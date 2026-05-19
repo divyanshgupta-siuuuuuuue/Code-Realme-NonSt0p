@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+python-multipart
+pymongo
+bcrypt
+PyJWT
+websockets
+aiofiles
+python-dotenv
+python-socketio
