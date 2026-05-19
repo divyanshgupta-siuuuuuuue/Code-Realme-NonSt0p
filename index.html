@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CODE REALME NONSTOP</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#05010d;
+    overflow:hidden;
+}
+
+.orbitron{
+    font-family:'Orbitron',sans-serif;
+}
+
+.sidebar{
+    background:rgba(20,10,40,0.75);
+    backdrop-filter:blur(20px);
+}
+
+.glass{
+    background:rgba(25,15,50,0.55);
+    backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.neon{
+    box-shadow:
+    0 0 25px rgba(168,85,247,0.25),
+    inset 0 0 15px rgba(168,85,247,0.08);
+}
+
+.nav-btn{
+    transition:0.25s;
+}
+
+.nav-btn:hover{
+    transform:translateX(5px);
+    background:rgba(168,85,247,0.18);
+}
+
+.page{
+    display:none;
+    height:100%;
+}
+
+.page.active{
+    display:block;
+}
+
+.editor{
+    background:#07070b;
+    color:#22c55e;
+    font-family:monospace;
+}
+
+.terminal{
+    background:black;
+    color:#22c55e;
+    font-family:monospace;
+}
+
+.live-dot{
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{opacity:0.4;}
+    50%{opacity:1;}
+    100%{opacity:0.4;}
+}
+
+</style>
+</head>
+
+<body class="text-white">
+
+<div class="w-screen h-screen flex">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar w-[300px] h-full border-r border-purple-900 flex flex-col">
+
+        <div class="p-6 border-b border-purple-900">
+
+            <h1 class="orbitron text-3xl font-black bg-gradient-to-r from-yellow-400 via-purple-400 to-yellow-400 text-transparent bg-clip-text">
+                CRN
+            </h1>
+
+            <p class="text-xs text-purple-300 mt-2">
+                CODE REALME NONSTOP
+            </p>
+
+        </div>
+
+        <div class="flex-1 overflow-auto p-4 space-y-2">
+
+            <button onclick="openPage('dashboardPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                🏠 Dashboard
+            </button>
+
+            <button onclick="openPage('profilePage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                👤 Profile
+            </button>
+
+            <button onclick="openPage('socialPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                🌐 Socials
+            </button>
+
+            <button onclick="openPage('projectPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                📁 Projects
+            </button>
+
+            <button onclick="openPage('terminalPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                💻 Terminal
+            </button>
+
+            <button onclick="openPage('livePage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                🔥 Live At Peak
+            </button>
+
+            <button onclick="openPage('linksPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                🔗 Links
+            </button>
+
+            <button onclick="openPage('settingsPage')" class="nav-btn w-full text-left p-4 rounded-xl glass">
+                ⚙ Settings
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- MAIN -->
+
+    <div class="flex-1 h-full overflow-hidden">
+
+        <!-- DASHBOARD -->
+
+        <div id="dashboardPage" class="page active p-8 overflow-auto">
+
+            <div class="glass neon rounded-3xl p-8">
+
+                <div class="flex items-center gap-5">
+
+                    <div id="profileAvatar"
+                    class="w-24 h-24 rounded-full bg-gradient-to-br from-yellow-400 to-purple-600 flex items-center justify-center text-4xl font-black orbitron">
+                        A
+                    </div>
+
+                    <div>
+
+                        <h1 id="profileName" class="orbitron text-4xl font-bold">
+                            Awaiting User
+                        </h1>
+
+                        <p id="profileBio" class="text-purple-300 mt-2">
+                            No Bio
+                        </p>
+
+                        <div class="mt-4 flex items-center gap-3">
+                            <div class="w-3 h-3 bg-green-400 rounded-full live-dot"></div>
+                            <span class="text-green-400 text-sm">
+                                ONLINE
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-4 gap-6 mt-8">
+
+                <div class="glass rounded-2xl p-6 neon">
+                    <h2 class="orbitron text-xl text-yellow-400">Projects</h2>
+                    <p class="text-4xl mt-5 font-bold" id="projectCount">0</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 neon">
+                    <h2 class="orbitron text-xl text-yellow-400">Friends</h2>
+                    <p class="text-4xl mt-5 font-bold">0</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 neon">
+                    <h2 class="orbitron text-xl text-yellow-400">Live Rooms</h2>
+                    <p class="text-4xl mt-5 font-bold">0</p>
+                </div>
+
+                <div class="glass rounded-2xl p-6 neon">
+                    <h2 class="orbitron text-xl text-yellow-400">Deployments</h2>
+                    <p class="text-4xl mt-5 font-bold">0</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PROFILE -->
+
+        <div id="profilePage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <h1 class="orbitron text-3xl text-yellow-400 mb-8">
+                    PROFILE SETTINGS
+                </h1>
+
+                <div class="grid grid-cols-2 gap-8">
+
+                    <div class="space-y-5">
+
+                        <input id="usernameInput"
+                        type="text"
+                        placeholder="Username"
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                        <textarea id="bioInput"
+                        placeholder="Bio"
+                        class="w-full h-40 p-4 rounded-xl bg-black/30 border border-purple-700"></textarea>
+
+                        <input id="logoInput"
+                        type="file"
+                        accept="image/*"
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                        <button onclick="saveProfile()"
+                        class="w-full p-4 rounded-xl bg-yellow-500 text-black font-bold orbitron">
+                            SAVE PROFILE
+                        </button>
+
+                    </div>
+
+                    <div class="flex items-center justify-center">
+
+                        <img id="profileImagePreview"
+                        src="https://placehold.co/300x300/1a062b/facc15?text=PROFILE"
+                        class="w-72 h-72 rounded-full object-cover border-4 border-yellow-400">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SOCIALS -->
+
+        <div id="socialPage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <h1 class="orbitron text-3xl text-yellow-400">
+                    SOCIAL NETWORK
+                </h1>
+
+                <div class="mt-8 flex gap-4">
+
+                    <input id="friendId"
+                    type="text"
+                    placeholder="Enter Social ID"
+                    class="flex-1 p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                    <button onclick="sendFriendRequest()"
+                    class="px-8 rounded-xl bg-yellow-500 text-black font-bold orbitron">
+                        ADD
+                    </button>
+
+                </div>
+
+                <div id="friendsContainer"
+                class="grid grid-cols-3 gap-5 mt-10">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- PROJECTS -->
+
+        <div id="projectPage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <div class="flex justify-between items-center">
+
+                    <h1 class="orbitron text-3xl text-yellow-400">
+                        PROJECT COMMAND CENTER
+                    </h1>
+
+                    <button onclick="createProject()"
+                    class="px-6 py-4 bg-yellow-500 text-black rounded-xl font-bold orbitron">
+                        CREATE PROJECT
+                    </button>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 mt-10">
+
+                    <div class="space-y-5">
+
+                        <input id="projectName"
+                        type="text"
+                        placeholder="Project Name"
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                        <textarea id="projectDesc"
+                        placeholder="Description"
+                        class="w-full h-40 p-4 rounded-xl bg-black/30 border border-purple-700"></textarea>
+
+                        <input id="projectPurpose"
+                        type="text"
+                        placeholder="Purpose"
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                        <input id="projectLogo"
+                        type="file"
+                        accept="image/*"
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                        <input id="projectFiles"
+                        type="file"
+                        multiple
+                        class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                    </div>
+
+                    <div>
+
+                        <img id="projectLogoPreview"
+                        src="https://placehold.co/500x250/1a062b/facc15?text=PROJECT"
+                        class="w-full h-64 object-cover rounded-2xl border border-yellow-400">
+
+                        <div class="glass rounded-2xl p-5 mt-5">
+
+                            <div class="text-purple-300 text-sm">
+                                Generated Link
+                            </div>
+
+                            <div id="generatedProjectLink"
+                            class="mt-3 text-yellow-400 font-mono break-all">
+                                Awaiting Project
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- TERMINAL -->
+
+        <div id="terminalPage" class="page p-8 overflow-auto">
+
+            <div class="grid grid-cols-2 gap-8 h-full">
+
+                <div class="glass rounded-3xl p-5 neon flex flex-col">
+
+                    <div class="flex justify-between mb-5">
+
+                        <h1 class="orbitron text-yellow-400 text-2xl">
+                            CODE EDITOR
+                        </h1>
+
+                        <button onclick="runCode()"
+                        class="px-6 py-2 rounded-xl bg-yellow-500 text-black font-bold">
+                            COMPILE
+                        </button>
+
+                    </div>
+
+                    <textarea id="codeEditor"
+                    class="editor flex-1 rounded-2xl p-5 outline-none">
+
+console.log("CODE REALME NONSTOP");
+
+                    </textarea>
+
+                </div>
+
+                <div class="flex flex-col gap-6">
+
+                    <div class="glass rounded-3xl p-5 neon flex-1">
+
+                        <h1 class="orbitron text-yellow-400 text-2xl mb-5">
+                            TERMINAL
+                        </h1>
+
+                        <div id="terminalOutput"
+                        class="terminal h-[500px] overflow-auto rounded-2xl p-5">
+
+> System Ready
+<br>
+> AI Coding Buddy Online
+<br>
+> Runtime Active
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LIVE -->
+
+        <div id="livePage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <div class="flex justify-between">
+
+                    <h1 class="orbitron text-3xl text-yellow-400">
+                        LIVE AT PEAK
+                    </h1>
+
+                    <div class="flex gap-4">
+
+                        <button onclick="startCamera()"
+                        class="px-6 py-3 rounded-xl bg-purple-600">
+                            FACECAM
+                        </button>
+
+                        <button onclick="shareScreen()"
+                        class="px-6 py-3 rounded-xl bg-yellow-500 text-black">
+                            SCREEN SHARE
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-2 gap-8 mt-10">
+
+                    <video id="camera"
+                    autoplay
+                    muted
+                    playsinline
+                    class="w-full h-[400px] bg-black rounded-3xl object-cover border border-purple-700"></video>
+
+                    <video id="screenVideo"
+                    autoplay
+                    playsinline
+                    class="w-full h-[400px] bg-black rounded-3xl object-cover border border-yellow-400"></video>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- LINKS -->
+
+        <div id="linksPage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <h1 class="orbitron text-3xl text-yellow-400">
+                    LINKS CENTER
+                </h1>
+
+                <div class="mt-8 space-y-5">
+
+                    <input type="text"
+                    placeholder="Github"
+                    class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                    <input type="text"
+                    placeholder="Portfolio"
+                    class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                    <input type="text"
+                    placeholder="Deployment"
+                    class="w-full p-4 rounded-xl bg-black/30 border border-purple-700">
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- SETTINGS -->
+
+        <div id="settingsPage" class="page p-8 overflow-auto">
+
+            <div class="glass rounded-3xl p-8 neon">
+
+                <h1 class="orbitron text-3xl text-yellow-400">
+                    SETTINGS
+                </h1>
+
+                <div class="mt-10 grid grid-cols-2 gap-6">
+
+                    <button class="p-5 rounded-2xl glass">
+                        Theme
+                    </button>
+
+                    <button class="p-5 rounded-2xl glass">
+                        Notifications
+                    </button>
+
+                    <button class="p-5 rounded-2xl glass">
+                        Privacy
+                    </button>
+
+                    <button class="p-5 rounded-2xl glass">
+                        Audio
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function openPage(pageId){
+
+    document.querySelectorAll('.page').forEach(page=>{
+        page.classList.remove('active');
+    });
+
+    document.getElementById(pageId).classList.add('active');
+
+    location.hash = pageId;
+}
+
+window.onload = ()=>{
+
+    if(location.hash){
+
+        const id = location.hash.replace('#','');
+
+        const el = document.getElementById(id);
+
+        if(el){
+            openPage(id);
+        }
+    }
+}
+
+document.getElementById('logoInput').addEventListener('change',function(e){
+
+    const file = e.target.files[0];
+
+    if(file){
+
+        const reader = new FileReader();
+
+        reader.onload = function(ev){
+
+            document.getElementById('profileImagePreview').src = ev.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    }
+
+});
+
+document.getElementById('projectLogo').addEventListener('change',function(e){
+
+    const file = e.target.files[0];
+
+    if(file){
+
+        const reader = new FileReader();
+
+        reader.onload = function(ev){
+
+            document.getElementById('projectLogoPreview').src = ev.target.result;
+        }
+
+        reader.readAsDataURL(file);
+    }
+
+});
+
+function saveProfile(){
+
+    const name = document.getElementById('usernameInput').value;
+    const bio = document.getElementById('bioInput').value;
+
+    document.getElementById('profileName').innerText = name || "Unknown User";
+    document.getElementById('profileBio').innerText = bio || "No Bio";
+
+    if(name.length > 0){
+
+        document.getElementById('profileAvatar').innerText =
+        name.charAt(0).toUpperCase();
+    }
+
+    alert("PROFILE SAVED");
+}
+
+function createProject(){
+
+    const name = document.getElementById('projectName').value;
+
+    const randomId =
+    Math.random().toString(36).substring(2,10);
+
+    const link =
+    "xxxxx.web.onrender.com/project-" + randomId;
+
+    document.getElementById('generatedProjectLink')
+    .innerText = link;
+
+    const count =
+    parseInt(document.getElementById('projectCount').innerText);
+
+    document.getElementById('projectCount').innerText =
+    count + 1;
+
+    alert("PROJECT CREATED");
+}
+
+function sendFriendRequest(){
+
+    const id = document.getElementById('friendId').value;
+
+    if(!id){
+        alert("ENTER ID");
+        return;
+    }
+
+    const container =
+    document.getElementById('friendsContainer');
+
+    container.innerHTML += `
+
+    <div class="glass rounded-2xl p-5">
+
+        <div class="flex items-center gap-4">
+
+            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-purple-600 flex items-center justify-center text-black font-black">
+                F
+            </div>
+
+            <div>
+
+                <h2 class="font-bold">${id}</h2>
+
+                <div class="text-green-400 text-sm">
+                    ONLINE
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    `;
+}
+
+function speakError(){
+
+    const utter =
+    new SpeechSynthesisUtterance(
+        "Syntax Error Detected"
+    );
+
+    utter.lang = "en-GB";
+
+    speechSynthesis.speak(utter);
+}
+
+function runCode(){
+
+    const code =
+    document.getElementById('codeEditor').value;
+
+    const terminal =
+    document.getElementById('terminalOutput');
+
+    terminal.innerHTML += `
+    <br>
+    > Compiling Project...
+    `;
+
+    try{
+
+        new Function(code);
+
+        terminal.innerHTML += `
+        <br>
+        > Compilation Success
+        `;
+
+    }catch(err){
+
+        terminal.innerHTML += `
+        <br>
+        > ERROR: ${err.message}
+        `;
+
+        speakError();
+    }
+
+    terminal.scrollTop =
+    terminal.scrollHeight;
+}
+
+async function startCamera(){
+
+    try{
+
+        const stream =
+        await navigator.mediaDevices.getUserMedia({
+            video:true,
+            audio:true
+        });
+
+        document.getElementById('camera').srcObject =
+        stream;
+
+    }catch(err){
+
+        alert("Camera Permission Denied");
+    }
+}
+
+async function shareScreen(){
+
+    try{
+
+        const screen =
+        await navigator.mediaDevices.getDisplayMedia({
+            video:true
+        });
+
+        document.getElementById('screenVideo').srcObject =
+        screen;
+
+    }catch(err){
+
+        alert("Screen Share Cancelled");
+    }
+}
+
+</script>
+
+</body>
+</html>
